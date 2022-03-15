@@ -31,14 +31,31 @@
 
 //======================================================
 
+
+
+
+
+
 /* <CODE CONTROL> */
 
 #define TECHNIQUE_1 true
 #define TECHNIQUE_2 false
 #define TECHNIQUE_3 false
 
-#define Auto_sweep  false
-#define Step_sweep  true
+#define Auto_sweep  true
+#define Step_sweep  false
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* <TECHNIQUE_1 STUFFS> */
 
@@ -602,7 +619,7 @@ ISR(TIMER1_OVF_vect)
         PORTD &= ~(1 << PD4); 
     }
     
-    // Make the pin high every 20mS
+    // Make the pin high every 20mS with respect to the system.
     if(TMR1_C >= LEVELS)
     {
         PORTB |= 0xFF;
@@ -611,7 +628,7 @@ ISR(TIMER1_OVF_vect)
         TMR1_C = 0;
     }
     
-    //TIFR &= ~(1 << TOV1);
+    //TIFR &= ~(1 << TOV1); // Clear the TOV1 Flag bit.
     
     TCNT1 = PRE_LOADING_VAL; // Recharge the Timer1 Counter
     
